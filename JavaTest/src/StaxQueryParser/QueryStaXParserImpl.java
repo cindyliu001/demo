@@ -26,9 +26,7 @@ public class QueryStaXParserImpl {
 	private static final String FILE_NAME = "C:\\Users\\cindy.liu\\git\\LocalGitRepository\\JavaTest\\query.xml";
 	// Name of Elements in the xml file
 	private static final String SQL_TAG = "sql";
-	
 	private static volatile Map<String, String> sqlMap = null;
-	
 	private static volatile long lastModifiedTime; 
 	
 	static {
