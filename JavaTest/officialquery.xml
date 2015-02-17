@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="query.xsd">
+	<sql name="quickInvoice">
+		<![CDATA[ 
+  		This is the query I tuned for work. 
+  		The users complained that the page doesn't even return results after 30 minutes. 
+  		After I tuned the query, the page return results within 3 seconds.
+  		
+  		Unfornately I am not able to put the query here since it's related to work.
+		]]>  
+	</sql>
+</queries> 

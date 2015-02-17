@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="query.xsd">
+	<sql>
+		<![CDATA[ 
+  			SELECT customer_id FROM purchase_request
+		]]>  
+	</sql>
+</queries> 

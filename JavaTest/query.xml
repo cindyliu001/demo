@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <queries>
-	<sql name="quickInvoice">
+	<sql name="quickInvoice1">
 		<![CDATA[ 
-  
+  			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' AND (pr.customer_id = :customerId)
 		]]>  
 	</sql>
+	
+	<sql name="quickInvoice2">
+		<![CDATA[ 
+  			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' and (pr.customer_id = :customerId)
+		]]>  
+	</sql>
+	
+	<sql name="quickInvoice3">
+		<![CDATA[ 
+  			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' and (pr.customer_id = :customerId) AND company_id = :companyId
+		]]>  
+	</sql>
+	
 </queries> 

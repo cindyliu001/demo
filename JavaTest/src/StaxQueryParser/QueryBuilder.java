@@ -18,7 +18,7 @@ public class QueryBuilder  {
 		if (value != null) 
 			this.query = query.replace(":"+var, value);
 		else if(value == null)
-			this.query = query.replace(":"+var, "null");
+			this.query = query.replace(" = :"+var, " is null");
 		
 		return this;
 	}
@@ -26,9 +26,11 @@ public class QueryBuilder  {
 	/*
 	 *  This function is to create the query dynamically for better performance.
 	 *  We get rid the unnecessary criteria in the where clause
+	 *  
+	 *  Requirement: the criteria need to be within the parentheses after "AND"
 	 */
 	public  QueryBuilder convertcriterion(String var, String value) {
-		StringBuilder regex = new StringBuilder( "AND\\s+\\((.*):\\b").append(var).append("\\b(.*)\\)"); 
+		StringBuilder regex = new StringBuilder( "(?i)AND\\s+\\((.*):\\b").append(var).append("\\b(.*)\\)"); 
 		if (value != null) 
 			query = query.replace(":"+var, value);
 		else if(value == null)

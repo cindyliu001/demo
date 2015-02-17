@@ -23,7 +23,7 @@ import javax.xml.stream.XMLStreamReader;
 
 public class QueryStaXParserImpl {
 	// This can be moved to a property file.
-	private static final String FILE_NAME = "C:\\Users\\cindy.liu\\git\\LocalGitRepository\\JavaTest\\query.xml";
+	private static final String FILE_NAME = "C:\\Users\\cindy.liu\\git\\LocalGitRepository\\JavaTest\\officialquery.xml";
 	// Name of Elements in the xml file
 	private static final String SQL_TAG = "sql";
 	private static volatile Map<String, String> sqlMap = null;
@@ -31,21 +31,21 @@ public class QueryStaXParserImpl {
 	
 	static {
 		sqlMap = new HashMap<String, String>();
-		parseXML();
+		parseXML(FILE_NAME);
 	}
 	
-	public static Map<String, String> getSqlMap() {
-		File file = new File(FILE_NAME);
+	public static Map<String, String> getSqlMap(String fileName) {
+		File file = new File(fileName);
 		// If the xml file is updated, update the MAP using the current one.
 		if(file.lastModified() != lastModifiedTime) 
-			parseXML();
+			parseXML(fileName);
 		
 		return sqlMap;
 	}
 
 	// Stax parser for query.xml
-	public static void parseXML() {
-		File file = new File(FILE_NAME);
+	public static void parseXML(String fileName) {
+		File file = new File(fileName);
 		lastModifiedTime = file.lastModified(); 
 		
 		Map<String, String> newSqlMap = new HashMap<String, String>();
@@ -53,7 +53,7 @@ public class QueryStaXParserImpl {
 			// First, create a new XMLInputFactory
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 			// Setup a new eventReader
-			XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream(FILE_NAME));
+			XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream(fileName));
 		
 			// read the XML document
 			String tagContent = null, name = null, query = null;
