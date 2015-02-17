@@ -3,8 +3,8 @@
 	<sql name="quickInvoice">
 		<![CDATA[ 
   		This is the query I tuned for work. 
-  		The users complained that the page doesn't even return results after 30 minutes. 
-  		After I tuned the query, the page return results within 3 seconds.
+  		The users complained that the page did not even return results after 30 minutes. 
+  		After I tuned the query, the page returns results within 3 seconds now.
   		
   		Unfornately I am not able to put the query here since it's related to work.
 		]]>  
