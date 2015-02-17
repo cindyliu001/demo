@@ -49,7 +49,7 @@ public class StaxQueryParser {
 	
 	@Test
 	public void testReplaceParam() {
-		String query = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("quickInvoice1");
+		String query = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("quickInvoice");
 		QueryBuilder qb = new QueryBuilder(query);
 	
 		assertEquals("Replace paramerters", qb.replaceParam("customerId", "12345").getQuery().trim(), 
@@ -64,7 +64,7 @@ public class StaxQueryParser {
 	
 	@Test
 	public void testConvertcriterion() {
-		String query = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("quickInvoice1");
+		String query = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("quickInvoice");
 		QueryBuilder qb = new QueryBuilder(query);
 
 		assertEquals("Replace paramerters", qb.convertcriterion("customerId", "12345").getQuery().trim(), 
@@ -75,15 +75,21 @@ public class StaxQueryParser {
 		assertEquals("Replace paramerters", qb.convertcriterion("customerId", null).getQuery().trim(), 
 				"SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y'");
 		
-		String query2 = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("quickInvoice2");
+		String query2 = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("Lowercase and");
 		qb.setQuery(query2);
 		// Lowercase and
 		assertEquals("Replace paramerters", qb.convertcriterion("customerId", null).getQuery().trim(), 
 				"SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y'");
 		
-		String query3 = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("quickInvoice3");
+		String query3 = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("Simple Criteria");
 		qb.setQuery(query3);
 		// Get rid of the criteria in the middle of where clause
+		assertEquals("Replace paramerters", qb.convertcriterion("customerId", null).getQuery().trim(), 
+				"SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y'  AND company_id = :companyId");
+		
+		String query4 = QueryStaXParserImpl.getSqlMap(XML_FILE_2).get("Complex Criteria");
+		qb.setQuery(query4);
+		// Get rid of the complex criteria in the middle of where clause
 		assertEquals("Replace paramerters", qb.convertcriterion("customerId", null).getQuery().trim(), 
 				"SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y'  AND company_id = :companyId");
 	}

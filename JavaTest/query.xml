@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <queries>
-	<sql name="quickInvoice1">
+	<sql name="quickInvoice">
 		<![CDATA[ 
   			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' AND (pr.customer_id = :customerId)
 		]]>  
 	</sql>
 	
-	<sql name="quickInvoice2">
+	<sql name="Lowercase and">
 		<![CDATA[ 
   			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' and (pr.customer_id = :customerId)
 		]]>  
 	</sql>
 	
-	<sql name="quickInvoice3">
+	<sql name="Simple Criteria">
 		<![CDATA[ 
   			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' and (pr.customer_id = :customerId) AND company_id = :companyId
+		]]>  
+	</sql>
+	
+	<sql name="Complex Criteria">
+		<![CDATA[ 
+  			SELECT pr.customer_id FROM purchase_request pr WHERE invoice_at_shipping = 'Y' and ((pr.customer_id is null) or pr.customer_id = :customerId) AND company_id = :companyId
 		]]>  
 	</sql>
 	
